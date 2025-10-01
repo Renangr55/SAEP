@@ -1,0 +1,9 @@
+.error {
+  color: #e63946;     /* vermelho para chamar atenção */
+  font-size: 0.875rem; /* menor que o texto normal */
+  margin-top: 4px;
+  font-weight: 500;
+  background-color: #ffe6e6; /* fundo suave */
+  padding: 4px 8px;
+  border-radius: 4px;
+}

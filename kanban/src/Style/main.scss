@@ -1,0 +1,12 @@
+@use './cabecalho';
+@use './variaveis';
+@use './cadCadastro';
+@use './cadTarefas';
+@use './quadro';
+@use './coluna';
+@use './tarefas';
+
+
+.error{
+    color: red;
+}
