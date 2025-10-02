@@ -18,7 +18,7 @@ export function Tarefa({tarefa}){
     let navigate = useNavigate(); 
 
     const schemaCadTarefas = z.object({ 
-       status: z.enum(["Fazer","Fazendo","Pronto"])// ID da ForeignKey
+       status: z.enum(["Fazer","Fazendo","Pronto"], "Escolha o status")// ID da ForeignKey
     })
 
     //para fazer o uso do draggable eu preciso usar o hook respectivo
@@ -32,7 +32,7 @@ export function Tarefa({tarefa}){
 
     //style do drag drop
     const style = transform
-        ?{transform: `translate: ${transform.x}px, ${transform.y}px`}
+        ?{transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`}
         :undefined;
     
     const {
@@ -81,6 +81,8 @@ export function Tarefa({tarefa}){
         role="region"
         className="areaTask"
         ref={setNodeRef} 
+        draggable="true"
+        aria-describedby="Tarefa"
         aria-label={`Tarefa pertencente ao usuário ${tarefa.idUser ?? 'ID não disponível'}`}
         style={style}
         {...listeners}
@@ -115,25 +117,28 @@ export function Tarefa({tarefa}){
 
             {/* Conteiner dos botões */}
             <div className="conteinerBotoes">
-                {/* botões de editar tarefa e deletar tarefa */}
-                {/* <Link to="/atualizarTarefas:id">
-                    <button>Editar</button>
-                </Link> */}
-                <button onClick={() => {deleteTarefa({}, tarefa.idTarefa)}} className="botaoExcluir" type="button">Excluir</button>
+                <Link className="linkAtualizar" to='/atualizarTarefas'>Editar</Link>
+                <button onClick={deleteTarefa} className="botaoExcluir" type="button">Excluir</button>
             </div>
             
             {/* editar status da tarefa */}
             <form className="checkBox" onSubmit={handleSubmit((data) => editarStatus(data,tarefa.id))}>
                 <div className="statusBox">
                     <label htmlFor="status">Status:  </label>
-                    <select id="status" name="status" {...register("status")}>
+                    <select 
+                    id="status" 
+                    name="status" 
+                    aria-invalid="true"
+                    aria-labelledby={errors?.status ? "erroInputStatusTarefa" : undefined}
+                    {...register("status")}>
                         <option value = ''>Selecione o Status</option>
                         <option value = 'Fazer' >Fazer</option>
                         <option value = 'Fazendo'>Fazendo</option>
                         <option value = 'Pronto'>Pronto</option>
                     </select>
-                    {errors?.status && <p>{errors.status.message}</p>}
+                    {errors?.status && <p className="error" id="erroInputStatusTarefa">{errors.status.message}</p>}
                 </div>
+
                 <div className="conteinerBotaoStatus">
                     <button className="botaoAlterarStatus" type='submit'>Alterar Status</button>
                 </div>

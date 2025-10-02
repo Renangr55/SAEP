@@ -10,7 +10,7 @@ export function Cabecalho(){
             {/* links de cada página */}
             <nav className="barra">
                 <ul>
-                    <li><Link to ='/atualizarTarefas'>Atualizar Cadastro </Link></li>
+                    <li><Link to ='/atualizarTarefas'>Atualizar Tarefa </Link></li>
                     <li><Link to ='/cadUsuario'>Cadastro de Usuário </Link></li>
                     <li><Link to= '/cadTarefas'>Cadastro de Tarefas</Link></li>
                     <li><Link to='/quadros'>Tarefas</Link></li>

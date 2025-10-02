@@ -69,49 +69,73 @@ export function CadTarefas(){
     return (
         <>
             <form className="formularioTarefas" onSubmit={handleSubmit(obterdados)}>
-                <h2>Criar tarefas</h2>
+                <h1>Criar tarefas</h1>
                 
                 {/* descrição da atividade */}
                 <label htmlFor="descricaoInput">Descricao: </label>
-                <input id="descricaoInput" type="text" placeholder="Codificar back-end" {...register('descricao')} />
-                {errors?.descricao && <p>{errors?.descricao.message}</p>}
+                <input 
+                aria-required="true"
+                id="descricaoInput" 
+                type="text" 
+                placeholder="Codificar back-end"
+                aria-invalid={!!errors.descricao}
+                aria-labelledby={errors?.descricao ? "erroInputDescricao" : undefined}
+                {...register('descricao')} />
+                {errors?.descricao && <p id="erroInputDescricao" >{errors?.descricao.message}</p>}
 
                 {/* setor da atividade */}
                 <label htmlFor="setorInput" >Setor: </label>
-                <input id="setorInput" type="text" placeholder="BISB" {...register('setor')}/>
-                {errors?.setor && <p>{errors?.setor.message}</p>}
+                <input 
+                id="setorInput" 
+                type="text" 
+                placeholder="BISB" 
+                aria-required="true"
+                aria-invalid={!!errors?.setor}
+                aria-labelledby={errors?.setor ? "erroInputSetor" : undefined}
+                {...register('setor')}/>
+                {errors?.setor && <p id="erroInputSetor">{errors?.setor.message}</p>}
 
                 {/* prioridade da tarefa*/}
                 <label htmlFor="prioridadeSelect" >Prioridade: </label>
-                <select name="prioridade" id="prioridadeSelect" {...register('prioridade')}>
+                <select name="prioridade" id="prioridadeSelect" defaultValue="Baixa" {...register('prioridade')}>
                     <option value="Baixa">Baixa</option>
                     <option value="Media">Media</option>
-                    <option value="Alta" selected>Alta</option>
+                    <option value="Alta" >Alta</option>
                 </select>
                 {errors?.prioridade && <p className="error">{errors.prioridade.message}</p>}
 
                 {/* usuario pertecente a tarefa */}
                 <label htmlFor="usuarioSelect">Usuario: </label>
-                <select id="usuarioSelect" {...register('idUser')} required>
-                    <option value="" disabled >Selecione um usuario</option>
+                <select 
+                id="usuarioSelect" 
+                aria-required="true"
+                aria-invalid={!!errors?.idUser}
+                aria-labelledby={errors?.idUser ? "errorsIdUser" : undefined}
+                {...register('idUser')} 
+                required
+                >
+                    <option value="">Selecione um usuario</option>
                     {usuarios.map((usuario) => (
                         <option key={usuario.id} value={usuario.id}>
                             {usuario.nomeUsuario}
                         </option>
                     ))}
                 </select>
-                {errors?.idUser && <p>{errors.idUser.message}</p>}
+                {errors?.idUser && <p className="error" id="errorsIdUser">{errors.idUser.message}</p>}
                 
                 {/* status da atividade */}
                 <label htmlFor="statusSelect" >Status</label>
-                <select id="statusSelect" {...register("status")}>
-                    <option value="Fazer" selected>Fazer</option>
+                <select 
+                id="statusSelect" 
+                defaultValue="Fazer"
+                {...register("status")}>
+                    <option value="Fazer">Fazer</option>
                     <option value="Fazendo">Fazendo</option>
                     <option value="Pronto">Pronto</option>
                 </select>
 
-                <button type="submit">
-                    Cadastrar
+                <button aria-label="Criar Tarefa" type="submit">
+                    Criar
                 </button>
             </form>
         </>

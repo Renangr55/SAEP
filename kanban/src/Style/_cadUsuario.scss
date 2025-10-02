@@ -7,6 +7,7 @@
     flex-direction: column;
     gap: 5px;
 
+    // titulo do formulario
     h2{
         font-size: 24px;
         color:black;
@@ -20,6 +21,7 @@
         
     }
 
+    //input
     input, select, textarea{
         width: 160px;
         padding: 5px;

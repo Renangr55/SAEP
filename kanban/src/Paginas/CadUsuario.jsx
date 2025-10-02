@@ -62,15 +62,31 @@ export function CadUsuario(){
             <h2>Cadastro de Usuário</h2>
             <label htmlFor="nomeInput" >Nome:</label>
             {/* o register pega o valor inserido num campo input */}
-            <input aria-required id="nomeInput" type="text" placeholder="Jose da Silva" {...register('nomeUsuario')}/>
+            <input 
+            aria-required="true" 
+            id="nomeInput" 
+            type="text" 
+            placeholder="Jose da Silva" 
+            aria-invalid={!!errors?.nomeUsuario}
+            aria-labelledby={errors?.nomeUsuario ? "erroInputNomeUsuario" : undefined}
+
+            
+            {...register('nomeUsuario')}/>
             {/* Se der erro eu crio um novo paragrafo para exibir a mensagem */}
-            {errors?.nomeUsuario && <p>{errors?.nomeUsuario.message}</p>}
+            {errors?.nomeUsuario && <p id="erroInputNomeUsuario">{errors?.nomeUsuario.message}</p>}
  
-            <label aria-required htmlFor="emailInput" >E-mail:</label>
-            <input id="emailInput" type='email' placeholder="email@dominio.com.br" {...register('emailUsuario')}/>
-            {errors?.emailUsuario && <p>{errors.emailUsuario.message}</p>}
+            <label htmlFor="emailInput" >E-mail:</label>
+            <input 
+            aria-required="true"
+            id="emailInput" 
+            type='email' 
+            placeholder="email@dominio.com.br"
+            aria-invalid={!!errors?.nomeUsuario}
+            aria-labelledby={errors?.emailUsuario ? "erroInputEmail" : undefined} 
+            {...register('emailUsuario')}/>
+            {errors?.emailUsuario && <p className="error" id="erroInputEmail">{errors.emailUsuario.message}</p>}
  
-            <button type="submit">Cadastrar</button>
+            <button aria-label="Cadastrar usuários" type="submit">Cadastrar</button>
         </form>
     )
 }

@@ -90,17 +90,17 @@ export const AtualizarTarefa = () => {
                 {/* id tarefa:  */}
                 <label htmlFor="idTarefaInput">Id da tarefa: : </label>
                 <input aria-required id="idTarefaInput" type="number" placeholder="id da tarefa" {...register('id')} />
-                {errors?.id && <p>{errors?.id.message}</p>}
+                {errors?.id && <p className="error">{errors?.id.message}</p>}
 
                 {/* Descrição  */}
                 <label htmlFor="atualizarDescricaoInput">Descricao: </label>
                 <input aria-required id="atualizarDescricaoInput" type="text" placeholder="Codificar back-end" {...register('descricao')} />
-                {errors?.descricao && <p>{errors?.descricao.message}</p>}
+                {errors?.descricao && <p className="error">{errors?.descricao.message}</p>}
 
                 {/* setor:  */}
                 <label htmlFor="atualizarSetor">Setor: </label>
                 <input aria-required id="atualizarSetor" type="text" placeholder="BISB" {...register('setor')} />
-                {errors?.setor && <p>{errors?.setor.message}</p>}
+                {errors?.setor && <p className="error">{errors?.setor.message}</p>}
 
                 {/* prioridade:  */}
                 <label htmlFor="atualizarPrioridade">Prioridade: </label>
@@ -109,7 +109,7 @@ export const AtualizarTarefa = () => {
                     <option value="Media">Media</option>
                     <option value="Alta">Alta</option>
                 </select>
-                {errors?.prioridade && <p>{errors.prioridade.message}</p>}
+                {errors?.prioridade && <p className="error">{errors.prioridade.message}</p>}
 
                 {/* pertence a:  */}
                 <label htmlFor="atualizarUsuario">Usuario: </label>
@@ -121,7 +121,7 @@ export const AtualizarTarefa = () => {
                         </option>
                     ))}
                 </select>
-                {errors?.idUser && <p>{errors.idUser.message}</p>}
+                {errors?.idUser && <p className="error"> {errors.idUser.message}</p>}
 
                 {/* status tarefa:  */}
                 <label htmlFor="status">Status</label>
@@ -132,7 +132,7 @@ export const AtualizarTarefa = () => {
                 </select>
 
             
-                <button type="submit">
+                <button aria-label="Atualizar tarefa" type="submit">
                     Atualizar
                 </button>
             </form>

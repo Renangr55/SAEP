@@ -6,7 +6,7 @@ export function Coluna( {id,titulo, tarefas =[]}){
     const {setNodeRef} = useDroppable({id})
 
     return(
-        <section className='containerColuna' ref={setNodeRef} >
+<section className='containerColuna' drop="true" ref={setNodeRef} >
             {/*Titulo que recebi da coluna */}
             <h2 className='tituloColuna'>{titulo}</h2>
             {/* manipulação de array para fazer a exibição, eu posso usar o MAP */}
