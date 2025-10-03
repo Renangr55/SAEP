@@ -50,6 +50,7 @@ export function Quadro(){
 
     return(
         <DndContext onDragEnd={handleDragEnd}>
+            <Cabecalho />
             <main>
                 <h1 className="quadro">Tarefas</h1>
                 <article className="categoriasTarefas">
@@ -59,5 +60,7 @@ export function Quadro(){
                 </article>
             </main>
         </DndContext>
-     )
+    )
 }
+
+export default Quadro

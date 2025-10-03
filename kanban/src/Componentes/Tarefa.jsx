@@ -13,6 +13,7 @@ import { Link } from "react-router";
 
 
 
+
 export function Tarefa({tarefa}){
 
     let navigate = useNavigate(); 
@@ -89,10 +90,17 @@ export function Tarefa({tarefa}){
         {...attributes}>
             
             <dl>
+
+                {/* Area do usuario que pertence a tarefa */}
+                <div className="areaIdTarefa">
+                    <dt> ID da tarefa: </dt>
+                    <dd>{tarefa.id ?? "Id da tarefa não disponivel "}</dd>
+                </div>
+
                 {/* Area do usuario que pertence a tarefa */}
                 <div className="areaUsuario">
                     <dt> Pertence a: </dt>
-                    <dd>{tarefa.idUser ?? "ID não disponivel "}</dd>
+                    <dd>{tarefa.nomeUsuario ?? "ID não disponivel "}</dd>
                 </div>
 
                 {/* Area da descrição da tarefa */}
@@ -126,6 +134,7 @@ export function Tarefa({tarefa}){
                 <div className="statusBox">
                     <label htmlFor="status">Status:  </label>
                     <select 
+                    defaultValue={tarefa.status}
                     id="status" 
                     name="status" 
                     aria-invalid="true"

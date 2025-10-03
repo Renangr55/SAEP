@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Tarefa } from "../Componentes/Tarefa";
 import { useNavigate } from "react-router-dom";
+import { Cabecalho } from "../Componentes/Cabecalho";
 
 
 
@@ -84,6 +85,7 @@ export const AtualizarTarefa = () => {
 
     return (
         <>
+            <Cabecalho />
             <form className="formularioTarefas" onSubmit={handleSubmit(obterdados)}>
                 <h2>Atualizar Tarefa</h2>
 
