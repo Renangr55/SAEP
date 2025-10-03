@@ -8,9 +8,10 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
 
 class TarefaSrializer(serializers.ModelSerializer):
-    
+    idUser = serializers.SlugRelatedField(
+        slug_field='nomeUsuario',  # 👈 vai mostrar o nomeUsuario
+        queryset=Usuario.objects.all())
     class Meta:
-        
         model = Tarefa
         fields = "__all__"
 
