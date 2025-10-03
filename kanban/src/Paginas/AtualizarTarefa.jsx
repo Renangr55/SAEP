@@ -19,7 +19,7 @@ export const AtualizarTarefa = () => {
     const schemaAtualizarTarefas = z.object({
 
         id: z.string() //id da tarefa
-            .min(1, "o campo id prcesia ter um caracter no mnímo")
+            .min(1, "o campo id precesa ter um caracter no mnímo")
             .transform((valorDescricao) => valorDescricao.trim()),
 
         descricao: z.string()

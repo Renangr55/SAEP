@@ -12,7 +12,7 @@ import z from "zod";
 
 const schemaCadUsuario = z.object({
     //o que eu recebo
-     nomeUsuario: z.string()
+    nomeUsuario: z.string()
         .min(1, 'Preencha o campo nome, por favor')
         .max(30, 'O campo permite até 30 caracteres')
         .regex(new RegExp(/^[A-Za-zÀ-ú ]+$/),'O campo username só aceita letras e espaços')
@@ -33,7 +33,6 @@ export function CadUsuario(){
    
     const navigate = useNavigate()
     const {
-    setValue,
     register,//registra para mim 
     handleSubmit,// no momento em que eu submeter(clicar em cadastrar)
     formState: { errors }, //o que ta no formulario // se der ruim deixa na variavel errors
