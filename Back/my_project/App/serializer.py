@@ -8,7 +8,8 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
 
 class TarefaSrializer(serializers.ModelSerializer):
-    nomeUsuario = serializers.ReadOnlyField(source='idUser.nomeUsuario')
+    idUser = serializers.PrimaryKeyRelatedField(queryset=Usuario.objects.all())
+    nomeUsuario = serializers.StringRelatedField(source="idUser", read_only=True)
 
      
     class Meta:

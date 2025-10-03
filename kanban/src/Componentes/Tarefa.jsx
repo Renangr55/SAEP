@@ -16,7 +16,6 @@ import { Link } from "react-router";
 
 export function Tarefa({tarefa}){
 
-    let navigate = useNavigate(); 
 
     const schemaCadTarefas = z.object({ 
        status: z.enum(["Fazer","Fazendo","Pronto"], "Escolha o status")// ID da ForeignKey
@@ -86,13 +85,13 @@ export function Tarefa({tarefa}){
         aria-describedby="Tarefa"
         aria-label={`Tarefa pertencente ao usuário ${tarefa.idUser ?? 'ID não disponível'}`}
         style={style}
-        {...listeners}
-        {...attributes}>
+        
+        >
             
-            <dl>
+            <dl {...listeners} {...attributes}>
 
                 {/* Area do usuario que pertence a tarefa */}
-                <div className="areaIdTarefa">
+                <div className="areaIdTarefa"  >
                     <dt> ID da tarefa: </dt>
                     <dd>{tarefa.id ?? "Id da tarefa não disponivel "}</dd>
                 </div>

@@ -8,16 +8,16 @@ import { Cabecalho } from "../Componentes/Cabecalho";
 
 const schemaCadTarefas = z.object({
     descricao: z.string()
-        .trim()
-        .min(1, "Precisa ter mais que um caracter")
-        .max(40, "Utrapassou a quantidade de caracteres")
-        .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números"),
+        .min(3,"minimio 1 caracter")
+        .max(40,"Utrapassou a quantidade de caracteres")
+        .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números")
+        .transform((valorDescricao) => valorDescricao.trim()),
 
     setor: z.string()
-        .trim()
-        .min(1, "Precisamos de 1 caracter pelo menos")
+        .min(1, "Precisamos de 1 caracter pelo menos") 
         .max(20, "Utrapassou a quantidade de caracteres")
-        .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números"),
+        .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números")
+        .transform((valorSetor) => valorSetor.trim()),
 
     prioridade: z.enum(["Baixa", "Media", "Alta"]),
 
@@ -117,7 +117,7 @@ export function CadTarefas() {
                     {...register('idUser')}
                     required
                 >
-                    <option value="">Selecione um usuario</option>
+                    <option value="" >Selecione um usuario</option>
                     {usuarios.map((usuario) => (
                         <option key={usuario.id} value={usuario.id}>
                             {usuario.nomeUsuario}

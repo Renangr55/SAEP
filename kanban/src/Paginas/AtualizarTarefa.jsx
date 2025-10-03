@@ -19,19 +19,22 @@ export const AtualizarTarefa = () => {
     const schemaAtualizarTarefas = z.object({
 
         id: z.string() //id da tarefa
-            .min(1, "o campo id prcesia ter um caracter no mnímo"),
+            .min(1, "o campo id prcesia ter um caracter no mnímo")
+            .transform((valorDescricao) => valorDescricao.trim()),
 
         descricao: z.string()
             .trim()
             .min(1, "Precisa ter mais que um caracter")
             .max(40, "Utrapassou a quantidade de caracteres")
-            .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números"),
+            .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números")
+            .transform((valorDescricaoAtualizado) => valorDescricaoAtualizado.trim()),
 
         setor: z.string()
             .trim()
             .min(1, "Precisamos de 1 caracter pelo menos")
             .max(20, "Utrapassou a quantidade de caracteres")
-            .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números"),
+            .regex(new RegExp(/^[^\\s][A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ ]+$/), "Não aceitamos alguns caracteres especiais e nem números")
+            .transform((valorSetorAtualizado) => valorSetorAtualizado.trim()),
 
         prioridade: z.enum(["Baixa", "Media", "Alta"]),
 
@@ -67,14 +70,16 @@ export const AtualizarTarefa = () => {
                 descricao: data.descricao,
                 setor: data.setor,
                 prioridade: data.prioridade,
-                usuario: data.idUser,
+                idUser: data.idUser,
                 status: data.status
             }
 
+            console.log(payload);
+            
             const response = await axios.patch(`http://127.0.0.1:8000/api/tarefas/pkAtualizarDeletarTarefas/${data.id}`, payload)
             console.log(response.data)
             alert("Tarefa atualizada")
-            navigate("/quadros")
+            navigate("/")
             window.location.reload()
         } catch (error) {
             console.error("error", error)
